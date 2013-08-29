@@ -1,4 +1,4 @@
-﻿class PostsController < ApplicationController
+class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
@@ -11,7 +11,7 @@
   # GET /posts/1
   # GET /posts/1.json
   def show
-	@comment = Post.find(set_post).comments.build
+    @comment = Post.find(set_post).comments.build
   end
 
   # GET /posts/new
