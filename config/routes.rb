@@ -1,7 +1,5 @@
 KvContributor::Application.routes.draw do
-  devise_for :users, :controllers =>{
-    :registrations => "users/registrations"
-  }
+  devise_for :users
   resources :works
 
   resources :posts do
