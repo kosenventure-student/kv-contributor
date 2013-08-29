@@ -1,10 +1,15 @@
 ﻿Venture::Application.routes.draw do
 
+  devise_for :users, :controllers =>{
+    :registrations => "users/registrations"
+  }
   resources :works
 
   resources :comments
 
   resources :posts
+
+  root 'posts#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -46,7 +51,7 @@
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
