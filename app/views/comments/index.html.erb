@@ -3,8 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
       <th>User</th>
+      <th>Post</th>
       <th>Content</th>
       <th></th>
       <th></th>
@@ -15,8 +15,8 @@
   <tbody>
     <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.title %></td>
-        <td><%= comment.user %></td>
+        <td><%= comment.user_id %></td>
+        <td><%= comment.post_id %></td>
         <td><%= comment.content %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

@@ -1,26 +1,45 @@
-<h1>Listing posts</h1>
+﻿<h1>投稿一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>User</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+<!--
       <th>Content</th>
       <th></th>
       <th></th>
       <th></th>
+-->
     </tr>
   </thead>
 
   <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.title %></td>
-        <td><%= post.user %></td>
-        <td><%= post.content %></td>
+
+		<%
+			if post.title != ""
+				title = post.title
+			else
+				title = "Non Title"
+			end
+		%>
+        <td><%= link_to title, post %>(<%= post.comments.size %>)</td>
+		<%
+			if post.user_id
+				user = post.user_id
+			else
+				user = "you"
+			end
+		%>
+		<td><%= link_to user, "/" %></td>
+<!--
+        <td><%= link_to post.content, post %></td>
         <td><%= link_to 'Show', post %></td>
         <td><%= link_to 'Edit', edit_post_path(post) %></td>
         <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+-->
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +47,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%= link_to '新規投稿', new_post_path %>

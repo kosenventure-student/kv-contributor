@@ -1,24 +1,30 @@
-<p id="notice"><%= notice %></p>
+﻿<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h1>
+  <strong>タイトル:</strong>
   <%= @work.title %>
+
+  <strong>投稿者:</strong>
+	<%
+		if @work.user_id
+			@user = @work.user_id
+		else
+			@user = "you"
+		end
+	%>
+  <%= link_to @user, "/" %>	
+</h1>
+
+<p>
+  <strong>URL:</strong>
+  <%= link_to @work.url,@work.url %>
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @work.user %>
-</p>
-
-<p>
-  <strong>Content:</strong>
+  <strong>内容:</strong>
   <%= @work.content %>
 </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @work.url %>
-</p>
-
-<%= link_to 'Edit', edit_work_path(@work) %> |
-<%= link_to 'Back', works_path %>
+<%= link_to '編集', edit_work_path(@work) %> |
+<%= link_to '一覧', works_path %> |
+<%= link_to '削除', @work, method: :delete, data: { confirm: 'Are you sure?' } %>

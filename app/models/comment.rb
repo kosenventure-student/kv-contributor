@@ -1,4 +1,8 @@
 class Comment < ActiveRecord::Base
   belongs_to :user
-  attr_accessible :title, :content
+  belongs_to :post
+
+	validates :content, :presence => true
+
+	attr_accessible :title, :content
 end

@@ -1,11 +1,14 @@
 KvContributor::Application.routes.draw do
+  devise_for :users, :controllers =>{
+    :registrations => "users/registrations"
+  }
   resources :works
 
-  resources :comments
+  resources :posts do
+	  resources :comments
+  end
 
-  resources :posts
-
-  devise_for :users
+  root 'posts#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

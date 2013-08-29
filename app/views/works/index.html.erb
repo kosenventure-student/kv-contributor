@@ -1,28 +1,46 @@
-<h1>Listing works</h1>
+﻿<h1>作品一覧</h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>User</th>
+      <th>タイトル</th>
+      <th>作成者</th>
+      <th>URL</th>
+<!--
       <th>Content</th>
-      <th>Url</th>
       <th></th>
       <th></th>
       <th></th>
+-->
     </tr>
   </thead>
 
   <tbody>
     <% @works.each do |work| %>
       <tr>
-        <td><%= work.title %></td>
-        <td><%= work.user %></td>
-        <td><%= work.content %></td>
-        <td><%= work.url %></td>
+		<%
+			if work.title != ""
+				title = work.title
+			else
+				title = "Non Title"
+			end
+		%>
+        <td><%= link_to title, work %></td>
+		<%
+			if work.user_id
+				user = work.user_id
+			else
+				user = "you"
+			end
+		%>
+        <td><%= link_to user, "/" %></td>
+        <td><%= link_to work.url, work.url %></td>
+<!--
+        <td><%= link_to work.content, work %></td>
         <td><%= link_to 'Show', work %></td>
         <td><%= link_to 'Edit', edit_work_path(work) %></td>
         <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+-->
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +48,4 @@
 
 <br>
 
-<%= link_to 'New Work', new_work_path %>
+<%= link_to '投稿', new_work_path %>
