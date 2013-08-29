@@ -14,158 +14,24 @@
 
 
 
-* レイアウト */
-
-#container {
-	width: 800px;
-	margin: auto;
+/* レイアウト */
+h1{
+	padding: 3px 6px;
 }
-#contents {
-	margin: 20px 0;
-}
-#main {
-	width: 540px;
-	float: left;
-	margin: 20px;
-}
-
-#side_right {
-	width: 200px;
-	float: right;
-	margin: 15px 0 0 0;
-}
-
-
-
-/* 全体のフォント */
-body {
-	margin: 10px;
-	font-family: 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, Osaka, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
-}
-#header_title h1, h2, .menu ul, #footer address {
-	font-family: Georgia, 'Times New Roman', Times, serif;
-}
-
-@font-face {
-	font-family: DancingScript;
-}
-
-/* ヘッダー */
-#header {
-	background-image: url();
-	height: 220px;
-}
-#header_title {
-	padding: 100px 100px 100px 20px;
-}
-#header_title h1 {
+h2{
 	margin: 0;
-	font-size: 50px;
-	line-height: 1;
-	font-family: DancingScript, Georgia, serif;
-
-}
-#header_title p {
-	margin: 0;
-	margin-top: 10px;
-	font-size: 1em;
-	color: #000000;
-	font-family: DancingScript, Georgia, serif;
-
-}
-
-/*ナビゲーションバー*/
-
-.navi {
-	font-size: 0.875em;
-}
-.navi ul {
-	margin: 0;
-	padding: 0;
-}
-.navi li {
-	list-style-type: none;
-	float: left;
-	font-family: Verdana , Helvetica , sans-serif;
-}
-.navi li a {
-	margin: 0;
-	margin-left: 5px;
-	display: block;
-	width: 148px;
-	text-decoration: none;
-	text-align: center;
-	line-height: 30px;
-	color: #006699;
-	background-image: url(navi_back.png);
-	background-repeat: no-repeat;
-	background-position: top;
-}
-.navi li.select a{
-	background-position: 0 -80px;
-	margin-left: 0;
-}
-
-.navi li a:hover {
-	background-position: 0 -40px;
-}
-
-.navi li select a: hover{
-	background-position: 0 -80px;
-}
-
-
-/* コンテンツ */
-
-h2 {
-	margin: 0;
-	margin-bottom: 15px;
-	font-family: Verdana , Helvetica , sans-serif;
+	padding: 2px 5px;
 	font-size: 1.125em;
-	background-image: url(h2_icon.png);
-	background-repeat: no-repeat;
-	background-position: center left;
-	padding: 2px 0 2px 22px;
-	border-bottom: solid 2px #66cc00;
+
 }
-p {
-	margin: 0;
-	margin-bottom: 20px;
+h3{
+	padding: 0 8px;
+}
+p{
+	padding: 0 5px;
 	font-size: 0.875em;
 	line-height: 1.5;
-}
 
-/* サイドメニュー */
-.menu {
-	width: auto;
-	font-size: 1em;
-}
-.menu ul {
-	margin: 0;
-	padding: 0;
-}
-.menu li {
-    margin-bottom: 8px; 
-	list-style-type: none;
-}
-.menu li a {
-    display: block;
-	line-height: 50px;
-	padding-left: 24px;
-	color: #000000;
-	text-decoration: none;
-	background-image: url(menu_back.png);
-	background-repeat: no-repeat;
-	background-position: top left;
-}
-
-.menu li a:hover {
-    background-position: 0 -60px;
-    color: #ffffff;
-	font-weight: bold;
-}
-.menu li.first-menu {
-	border-top: solid 1px #f2f2f2;
 }
 
 
