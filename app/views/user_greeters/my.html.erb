@@ -1,0 +1,76 @@
+<% max_view_length = 20 %>
+あなたの作品 works <br />
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>url</th>
+      <th>内容</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for t in @my_works_raw %>
+      <tr>
+        <th><%= link_to t.title, t.page %></th>
+        <th><%= link_to t.url, t.url %></th>
+        <th>
+          <%= auto_shrink(t.content, max_view_length, '<font color="lightgrey">(ry</font>', true) %>
+        </th>
+        <th><%= t.created_at %></th>
+        <th><%= t.updated_at %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+あなたの投稿 posts <br />
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>内容</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for t in @my_posts_raw %>
+      <tr>
+        <th><%= link_to t.title, t.page %></th>
+        <th>
+          <%= t.content[0..max_view_length] %>
+            <%= if t.content.length >= 20
+                  '<font color="lightgrey">(ry</font>'.html_safe
+                end %>
+        </th>
+        <th><%= t.created_at %></th>
+        <th><%= t.updated_at %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+
+あなたのコメント comments <br />
+<table>
+  <thead>
+    <tr>
+      <th>投稿タイトル</th>
+      <th>コメント</th>
+      <th>作成日時</th>
+      <th>更新日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for t in @my_comments_raw %>
+      <tr>
+        <th><%= link_to t.post_origin, t.page %></th>
+        <th><%= t.content %></th>
+        <th><%= t.created_at %></th>
+        <th><%= t.updated_at %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -9,8 +9,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :email, :password, :password_confirmation, :current_password) }
   end
+
   def uid2uname(uid)
-    User.find_by(:id => uid).username
+    if uid == nil
+      "?"
+    else
+      User.find_by(:id => uid).username
+    end
   end
 
   def uid2url(uid)

@@ -24,13 +24,15 @@
   # POST /comments
   # POST /comments.json
   def create
-	@post = Post.find(params[:post_id])
-    @comment = Post.find(params[:post_id]).comments.new(comment_params)
-	if @comment.save
-		redirect_to post_path(@post)
-	else
-		render :template => "posts/show"
-	end
+    tmp_params = comment_params
+    tmp_params[:user_id] = current_user.id
+    @post = Post.find(params[:post_id])
+      @comment = Post.find(params[:post_id]).comments.new(tmp_params)
+    if @comment.save
+      redirect_to post_path(@post)
+    else
+      render :template => "posts/show"
+  end
 =begin
     respond_to do |format|
       if @comment.save

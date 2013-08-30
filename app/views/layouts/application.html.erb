@@ -1,10 +1,34 @@
 <%
+  def uid2link(uid)
+    if uid == nil
+      "?"
+    else
+      link_to(uid2uname(uid), uid2url(uid))
+    end
+  end
+
   def uid2uname(uid)
-    User.find_by(:id => uid).username
+    if uid == nil
+      "?"
+    else
+      User.find_by(:id => uid).username
+    end
   end
 
   def uid2url(uid)
     "/profile/"+uid.to_s
+  end
+
+  def auto_shrink(str, len, suf="", is_tagged_suf=false)
+    if str.length > len
+      if is_tagged_suf
+        (str[0..len+1] + suf).html_safe
+      else
+        str[0..len+1] + suf
+      end
+    else
+      str
+    end
   end
 %>
 <!DOCTYPE html>

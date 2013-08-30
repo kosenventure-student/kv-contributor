@@ -22,10 +22,10 @@
       <tr>
 
         <%
-            if post.title != ""
-                title = post.title
-            else
+            if post.title.blank?
                 title = "Non Title"
+            else
+                title = post.title
             end
         %>
         <td><%= link_to title, post %>(<%= post.comments.size %>)</td>
@@ -36,7 +36,7 @@
                 user = "unknown"
             end
         %>
-        <td><%= link_to user, "/profile/"+post.user_id.to_s %></td>
+        <td><%= link_to user, uid2url(post.user_id) %></td>
         <td><%= post.created_at %></td>
         <td><%= post.updated_at %></td>
 <!--
