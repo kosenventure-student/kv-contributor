@@ -25,6 +25,7 @@
   # GET /posts/1
   # GET /posts/1.json
   def show
+	@comment = Post.find(set_post).comments.build
 	if params[:num].nil?
 		@num = "0"
 	else
