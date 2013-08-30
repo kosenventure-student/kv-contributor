@@ -1,4 +1,4 @@
-﻿class PostsController < ApplicationController
+class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
@@ -25,6 +25,7 @@
   # GET /posts/1
   # GET /posts/1.json
   def show
+<<<<<<< HEAD
 	@comment = Post.find(set_post).comments.build
 	if params[:num].nil?
 		@num = "0"
@@ -40,6 +41,9 @@
     # セッション保存
     session[:num] = @num
     session[:dir] = @dir
+=======
+    @comment = Post.find(set_post).comments.build
+>>>>>>> 316dced4b1dafedf98eb48ce870b4402001e71cf
   end
 
   # GET /posts/new

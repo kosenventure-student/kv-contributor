@@ -23,11 +23,18 @@
   <%= link_to "ログイン", new_user_session_path %>
   <% end %>
   <hr />
-</header><body>
+</header>
+<body>
 <p><%= notice %></p>
 <p><%= alert %></p>
 
 <%= yield %>
 
 </body>
+<footer>
+  <hr />
+  <%= link_to "ぽすと",posts_path %> <br />
+  <%= link_to "わーく",works_path %> <br />
+
+</footer>
 </html>
