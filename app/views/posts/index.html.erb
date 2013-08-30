@@ -18,22 +18,22 @@
     <% @posts.each do |post| %>
       <tr>
 
-		<%
-			if post.title != ""
-				title = post.title
-			else
-				title = "Non Title"
-			end
-		%>
+        <%
+            if post.title != ""
+                title = post.title
+            else
+                title = "Non Title"
+            end
+        %>
         <td><%= link_to title, post %>(<%= post.comments.size %>)</td>
-		<%
-			if post.user_id
-				user = post.user_id
-			else
-				user = "you"
-			end
-		%>
-		<td><%= link_to user, "/" %></td>
+        <%
+            if post.user_id
+                user = post.user_id
+            else
+                user = "you"
+            end
+        %>
+        <td><%= link_to user, "/" %></td>
 <!--
         <td><%= link_to post.content, post %></td>
         <td><%= link_to 'Show', post %></td>
