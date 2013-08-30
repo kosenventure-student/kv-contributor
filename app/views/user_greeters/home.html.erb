@@ -1,60 +1,37 @@
-﻿<h2>最新投稿！</h2>
-<table>
-	<thead>
-		<tr>
-			<th>タイトル</th>
-			<th>投稿者</th>
-		</tr>
-	</thead>
-<% if @posts.any? %>
-<% @posts.each do |post| %>
-	<tbody>
-		<tr>
-			<% if post.title.blank? %>
-				<th><%= link_to "NonTitle", post %>(<%= post.comments.size %>)</th>
-			<% else %>
-				<th><%= link_to post.title, post %>(<%= post.comments.size %>)</th>
-			<% end %>
-			<% @user = User.find_by id: post.user_id %>
-			<% if @user.blank? %>
-				<th>you</th>
-			<% else %>
-				<th><%= link_to @user.username, "/" %></th>
-			<% end %>
-		</tr>
-	</tbody>
-<% end %>
-<% else %>
-	最新投稿はありません。
-<% end %>
-</table>
-<h2>最新作品！</h2>
-<table>
-	<thead>
-		<tr>
-			<th>タイトル</th>
-			<th>投稿者</th>
-		</tr>
-	</thead>
-<% if @works.any? %>
-<% @works.each do |work| %>
-	<tbody>
-		<tr>
-			<% if work.title.blank? %>
-				<th><%= link_to "NonTitle", work %></th>
-			<% else %>
-				<th><%= link_to work.title, work %></th>
-			<% end %>
-			<% @user = User.find_by id: work.user_id %>
-			<% if @user.blank? %>
-				<th>you</th>
-			<% else %>
-				<th><%= link_to @user.username, "/" %></th>
-			<% end %>
-		</tr>
-	</tbody>
-<% end %>
-<% else %>
-	最新投稿はありません。
-<% end %>
-</table>
+﻿<body>
+<div id="container">
+
+<div id="header">
+<div id="header_title">
+	<h1>Sample Site  title</h1>
+	<p>ここにサブタイトル文が入ります</p>
+</div>
+</div>
+
+
+<div id="contents">
+
+<div id="main">
+	<h2>最新投稿！</h2>
+	<p>ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。</p>
+	<p>ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。ここにコンテンツのテキストが入ります。</p>
+</div>
+
+
+<div id="side_right">
+<div class="menu">
+ <ul>
+  <li class="first-menu"><a href="#">TOP</a></li>	
+  <li><a href="#">作品リスト</a></li>
+  <li><a href="#">Menu 03</a></li>
+  <li><a href="#">Menu 04</a></li> 
+ </ul>
+</div>
+</div>
+
+</div>
+
+</div><!-- / container-->
+
+</body>
+</html>
