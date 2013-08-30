@@ -125,6 +125,10 @@
 
 <script type="text/javascript">
 $(function() {
+	setTimeout(function() {
+		$('#notice').fadeOut("slow");
+	}, 800);
+
 	$(document).on('ajax:success', 'a[data-method="delete"]', function(e, data, status, xhr){
 		$('#comment_'+data.comment.id).fadeOut("slow");
 	});
