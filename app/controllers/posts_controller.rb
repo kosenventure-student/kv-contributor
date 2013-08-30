@@ -26,12 +26,14 @@
   # GET /posts/1.json
   def show
 	@comment = Post.find(set_post).comments.build
+		@num = "0"
 	if params[:num].nil?
 		@num = "0"
 	else
 		@num = params[:num]
 	end
 
+	@dir = "none"
 	if params[:dir].nil?
 		@dir = "none"
 	else

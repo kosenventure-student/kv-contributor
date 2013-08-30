@@ -1,1 +1,30 @@
-ほーむ
+﻿<h2>最新投稿！</h2>
+<table>
+	<thead>
+		<tr>
+			<th>タイトル</th>
+			<th>投稿者</th>
+		</tr>
+	</thead>
+<% if @posts.any? %>
+<% @posts.each do |post| %>
+	<tbody>
+		<tr>
+			<% if post.title.blank? %>
+				<th><%= link_to "NonTitle", post %>(<%= post.comments.size %>)</th>
+			<% else %>
+				<th><%= link_to post.title, post %>(<%= post.comments.size %>)</th>
+			<% end %>
+			<% @user = User.find_by id: post.user_id %>
+			<% if @user.blank? %>
+				<th>you</th>
+			<% else %>
+				<th><%= link_to @user.username, "/" %></th>
+			<% end %>
+		</tr>
+	</tbody>
+<% end %>
+<% else %>
+	最新記事はありません。
+<% end %>
+</table>

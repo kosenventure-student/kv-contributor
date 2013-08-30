@@ -1,4 +1,4 @@
 class Work < ActiveRecord::Base
-  belongs_to :user_id
+  belongs_to :user
 	attr_accessible :title, :content, :url
 end

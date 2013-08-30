@@ -22,10 +22,10 @@
       <tr>
 
         <%
-            if post.title != ""
-                title = post.title
-            else
+            if post.title.blank?
                 title = "Non Title"
+            else
+                title = post.title
             end
         %>
         <td><%= link_to title, post %>(<%= post.comments.size %>)</td>

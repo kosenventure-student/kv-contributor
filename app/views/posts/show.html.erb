@@ -25,46 +25,55 @@
 
 <% if @post.comments.any? %>
 
-<% if @dir == "next" %>
-<% @instruct=">" %>
-<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id " + @instruct + " " + @num.to_s + " LIMIT 10") %>
-<% end %>
-<% if @dir == "back" %>
-<% @instruct="<" %>
-<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id " + @instruct + " " + @num.to_s + " LIMIT 10") %>
-<% end %>
-<% if @dir == "none" %>
-<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " LIMIT 10") %>
-<% end %>
+	<% if @dir == "next" %>
+		<% @instruct=">" %>
+		<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id " + @instruct + " " + @num.to_s + " LIMIT 10") %>
+	<% end %>
+	<% if @dir == "back" %>
+		<% @instruct="<" %>
+		<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id " + @instruct + "= " + @num.to_s + " LIMIT 10") %>
+	<% end %>
+	<% if @dir == "none" %>
+		<% @c = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " LIMIT 10") %>
+	<% end %>
 
-<% unless @c.blank? %>
+	<% unless @c.blank? %>
 
-<% @c.each do |comment| %>
-<li id="comment_<%= comment.id %>"><%= comment.content %>
-<%= link_to '削除', [comment.post, comment], :confirm => 'Realy?', :method => :delete, :remote => true %>
-</li>
-<% end %>
+		<% @c.each do |comment| %>
+			<ul>
+				<li id="comment_<%= comment.id %>"><%= comment.content %>
+					<%= link_to '削除', [comment.post, comment], :confirm => 'Realy?', :method => :delete, :remote => true %>
+				</li>
+			</ul>
+		<% end %>
 
-<% end %>
-
-<% @d = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id < " + @num.to_s + " LIMIT 10") %>
-<% unless @d.blank? %>
-<% if @c.blank? %>
-<%= link_to "前へ", dir: "back" , num: @num %>
+	<% end %>
+<!--
+	<% @d = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id <= " + @num.to_s + " LIMIT 10") %>
+	<% unless @d.blank? %>
+		<% if @c.blank? %>
+			<%= link_to "前へ", dir: "back" , num: @num %>
+		<% end %>
+		<% if @c.blank? %>
+			<% @d = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id > " + @num.to_s + " LIMIT 10") %>
+			<% unless @d.blank? %>
+				<%= link_to "次へ", dir: "next" , num: 0 %>
+			<% end %>
+		<% end %>
+	<% end %>
+-->
+	<% unless @c.blank? %>
+		<% user = User.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id < " + @c[0].id.to_s + " LIMIT 10") %>
+		<% unless user.blank? %>
+			<%= link_to "前へ", dir: "back" , num: @c[0].id %>
+		<% end %>
+		<% user = User.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id > " + @c[0].id.to_s + " LIMIT 10") %>
+		<% unless user.count < 10 %>
+			<%= link_to "次へ", dir: "next" , num: @c[@c.count-1].id %>
+		<% end %>
+	<% end %>
 <% else %>
-<%= link_to "前へ", dir: "back" , num: @c[0].id %>
-<% end %>
-<% end %>
-<% if @c.blank? %>
-<% @d = Comment.find_by_sql("SELECT * FROM comments WHERE post_id = " + @post.id.to_s + " AND id > " + @num.to_s + " LIMIT 10") %>
-<% unless @d.blank? %>
-<%= link_to "次へ", dir: "next" , num: 0 %>
-<% end %>
-<% else %>
-<%= link_to "次へ", dir: "next" , num: @c[@c.count-1].id %>
-<% end %>
-<% else %>
-<li>コメントはありません。</li>
+	<li>コメントはありません。</li>
 <% end %>
 </ul>
 
@@ -72,13 +81,13 @@
 
 <%= form_for([@post, @comment]) do |f| %>
 
-<% if @comment.errors.any? %>
-<ul>
-<% @comment.errors.full_messages.each do |msg| %>
-<li><%= msg %></li>
-<% end %>
-</ul>
-<% end %>
+	<% if @comment.errors.any? %>
+		<ul>
+			<% @comment.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
 <!--
   <% if @comment.errors.any? %>
     <div id="error_explanation">
@@ -110,7 +119,6 @@
     <%= f.submit %>
   </div>
 <% end %>
-
 <%= link_to '編集', edit_post_path(@post) %> |
 <%= link_to '一覧', posts_path %> |
 <%= link_to '削除', @post, method: :delete, data: { confirm: 'Are you sure?' } %>
