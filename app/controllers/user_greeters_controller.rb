@@ -9,6 +9,6 @@
 
 	def home
 		@posts = Post.find_by_sql("SELECT * FROM posts ORDER BY created_at DESC LIMIT 10")
-		@work = Work.find_by_sql("SELECT * FROM works ORDER BY created_at DESC LIMIT 10")
+		@works = Work.find_by_sql("SELECT * FROM works ORDER BY created_at DESC LIMIT 10")
 	end
 end

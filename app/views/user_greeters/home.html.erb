@@ -25,6 +25,36 @@
 	</tbody>
 <% end %>
 <% else %>
-	最新記事はありません。
+	最新投稿はありません。
+<% end %>
+</table>
+<h2>最新作品！</h2>
+<table>
+	<thead>
+		<tr>
+			<th>タイトル</th>
+			<th>投稿者</th>
+		</tr>
+	</thead>
+<% if @works.any? %>
+<% @works.each do |work| %>
+	<tbody>
+		<tr>
+			<% if work.title.blank? %>
+				<th><%= link_to "NonTitle", work %></th>
+			<% else %>
+				<th><%= link_to work.title, work %></th>
+			<% end %>
+			<% @user = User.find_by id: work.user_id %>
+			<% if @user.blank? %>
+				<th>you</th>
+			<% else %>
+				<th><%= link_to @user.username, "/" %></th>
+			<% end %>
+		</tr>
+	</tbody>
+<% end %>
+<% else %>
+	最新投稿はありません。
 <% end %>
 </table>
