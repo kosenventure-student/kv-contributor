@@ -1,17 +1,45 @@
-class PostsController < ApplicationController
+﻿class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+	if params[:sort].nil?
+		@orders = 'id'
+	else
+		@orders = params[:sort].to_s
+	end
+
+	if @orders == session[:sort]
+		@direction = session[:direction] == 'ASC'? 'DESC':'ASC'
+	else
+		@direction = 'ASC'
+	end
+    # セッション保存
+    session[:sort] = @orders
+    session[:direction] = @direction
+	@posts = Post.order(@orders.to_s + ' ' + @direction.to_s)
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comment = Post.find(set_post).comments.build
+	@comment = Post.find(set_post).comments.build
+	if params[:num].nil?
+		@num = "0"
+	else
+		@num = params[:num]
+	end
+
+	if params[:dir].nil?
+		@dir = "none"
+	else
+		@dir = params[:dir]
+	end
+    # セッション保存
+    session[:num] = @num
+    session[:dir] = @dir
   end
 
   # GET /posts/new
@@ -21,6 +49,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+
   end
 
   # POST /posts
