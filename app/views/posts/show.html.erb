@@ -12,7 +12,7 @@
 			@user = "you"
 		end
 	%>
-  <%= link_to @user, "/" %>	
+  <%= link_to User.find_by(:id => @user).username, "/profile/"+@user.to_s %>
 </h1>
 
 <p>
