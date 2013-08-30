@@ -1,5 +1,6 @@
 KvContributor::Application.routes.draw do
   get "profile/:uid" => "user_greeters#greet"
+  get "my" => "user_greeters#my"
   root 'user_greeters#home'
   devise_for :users
   resources :works

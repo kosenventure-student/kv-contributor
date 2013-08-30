@@ -1,3 +1,12 @@
+<%
+  def uid2uname(uid)
+    User.find_by(:id => uid).username
+  end
+
+  def uid2url(uid)
+    "/profile/"+uid.to_s
+  end
+%>
 <!DOCTYPE html>
 <html>
 <head>

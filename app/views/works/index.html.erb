@@ -33,7 +33,7 @@
 				user = "you"
 			end
 		%>
-        <td><%= link_to user, "/" %></td>
+        <td><%= link_to uid2uname(user), uid2url(user) %></td>
         <td><%= link_to work.url, work.url %></td>
 <!--
         <td><%= link_to work.content, work %></td>

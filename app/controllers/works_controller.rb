@@ -24,7 +24,9 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.json
   def create
-    @work = Work.new(work_params)
+    tmp_params = work_params
+    tmp_params[:user_id] = current_user.id
+    @work = Work.new(tmp_params)
 
     respond_to do |format|
       if @work.save
@@ -69,6 +71,6 @@ class WorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
-      params.require(:work).permit(:title, :user_id_id, :content, :url)
+      params.require(:work).permit(:title, :user_id, :content, :url)
     end
 end
