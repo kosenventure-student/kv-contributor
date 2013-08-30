@@ -7,10 +7,10 @@ class UserGreetersController < ApplicationController
     end
   end
 
-	def home
-		@posts = Post.find_by_sql("SELECT * FROM posts ORDER BY created_at DESC LIMIT 10")
-		@work = Work.find_by_sql("SELECT * FROM works ORDER BY created_at DESC LIMIT 10")
-	end
+  def home
+    @posts = Post.find_by_sql("SELECT * FROM posts ORDER BY created_at DESC LIMIT 10")
+    @works = Work.find_by_sql("SELECT * FROM works ORDER BY created_at DESC LIMIT 10")
+  end
   def my
     @my_works_raw = Work.find_by_sql("select * from works where user_id = "+current_user.id.to_s)
     @my_posts_raw = Post.find_by_sql("select * from posts where user_id = "+current_user.id.to_s)
