@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <title>KvContributor</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "text", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<header>
-  <h3>kosenventure contributer</h3>
+<div id="header">
+  <div id="headerimg"><p id='msg'>KosenVentureContributor</p></div>
   <% if user_signed_in? %>
   <%=
     if current_user.username == nil
@@ -24,7 +24,7 @@
   <%= link_to "ログイン", new_user_session_path %>
   <% end %>
   <hr />
-</header>
+</div>
 <body>
 <p><%= notice %></p>
 <p><%= alert %></p>
@@ -38,6 +38,5 @@
   <%= link_to "わーく",works_path %> <br />
   <%= link_to "じぶん","my" %> <br />
   <%= link_to "とっぷ",root_path %> <br />
-
 </footer>
 </html>
