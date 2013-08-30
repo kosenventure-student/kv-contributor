@@ -67,7 +67,9 @@
     <% for t in @my_comments_raw %>
       <tr>
         <th><%= link_to t.post_origin, t.page %></th>
-        <th><%= t.content %></th>
+        <th>
+          <%= auto_shrink(t.content, max_view_length, '<font color="lightgrey">(ry</font>', true) %>
+        </th>
         <th><%= t.created_at %></th>
         <th><%= t.updated_at %></th>
       </tr>
