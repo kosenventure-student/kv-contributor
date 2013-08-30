@@ -1,10 +1,12 @@
 ﻿<h1>投稿一覧</h1>
-
+<p><%= @orders %>を<%= @direction=='ASC'? '昇順':'降順' %>でソート中</p>
 <table>
   <thead>
     <tr>
-      <th>タイトル</th>
-      <th>作成者</th>
+      <th><%= link_to "タイトル", sort: "title" %></th>
+      <th><%= link_to "作成者", sort: "user" %></th>
+      <th><%= link_to "作成日", sort: "created_at" %></th>
+      <th><%= link_to "更新日", sort: "updated_at" %></th>
 <!--
       <th>Content</th>
       <th></th>
@@ -16,6 +18,7 @@
 
   <tbody>
     <% @posts.each do |post| %>
+		
       <tr>
 
 		<%
@@ -34,6 +37,8 @@
 			end
 		%>
 		<td><%= link_to user, "/" %></td>
+		<td><%= post.created_at %></td>
+		<td><%= post.updated_at %></td>
 <!--
         <td><%= link_to post.content, post %></td>
         <td><%= link_to 'Show', post %></td>
